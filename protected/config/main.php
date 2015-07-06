@@ -8,7 +8,7 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'SAFEs',
-
+   	'theme'=>'principal',
 	// preloading 'log' component
 	'preload'=>array('log'),
 
@@ -16,8 +16,14 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		//modulo de Bootstrap
+        'bootstrap.behaviors.*',
+        'bootstrap.helpers.*',
+        'bootstrap.widgets.*',
 	),
-
+    'aliases' => array(
+        'bootstrap' => 'ext.bootstrap'
+    ),
 	'modules'=>array(
 		//Modulo de Creacion de Modulos propios de YII
 		'gii'=>array(
@@ -25,12 +31,20 @@ return array(
 			'password'=>'123456',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
+			//Modulo Gii de bootstrap
+			'generatorPaths' => array(
+                'bootstrap.gii'
+            ),
 		),
 		
 	),
 
 	// application components
 	'components'=>array(
+  		//Comp de bootraps
+        'bootstrap' => array(
+            'class' => 'bootstrap.components.BsApi'
+        ),
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
