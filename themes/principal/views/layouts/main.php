@@ -8,13 +8,11 @@
     <?php
     $cs        = Yii::app()->clientScript;
     $themePath = Yii::app()->theme->baseUrl;
-
     /**
      * StyleSHeets
      */
-    $cs->registerCssFile($themePath . '/assets/css/bootstrap.css');
-    $cs->registerCssFile($themePath . '/assets/css/bootstrap-theme.css');
-
+    // $cs->registerCssFile($themePath . '/assets/css/bootstrap.min.css');
+    $cs->registerCssFile($themePath . '/assets/css/bootstrap.cerulean.min.css');
     /**
      * JavaScripts
      */
@@ -34,8 +32,8 @@
     <![endif]-->
     <style type="text/css">body { padding-top: 70px; }</style>
   </head>
-  <body><div class="container-fluid">
-<div class="container">
+  <body>
+  <div class="container">
   <!--div id="header">
     <h1 id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></h1>
   </div><!-- header -->
@@ -144,6 +142,7 @@
       )
     )
   );?>
+  
     <?php
       $this->widget('bootstrap.widgets.BsBreadCrumb', array(
         'links' => $this->breadcrumbs,
