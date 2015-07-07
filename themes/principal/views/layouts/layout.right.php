@@ -4,7 +4,8 @@
 	<h2>Opciones</h2>
 	<?php
 echo BsHtml::stackedPills($this->menu, array(
-    'style' => ''
+    'style' => '',
+          'activateParents' => true,
 ));
 ?>
 </div>

@@ -8,11 +8,11 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Persona', 'url'=>array('index')),
-	array('label'=>'Manage Persona', 'url'=>array('admin')),
+	array('label'=>'Administrar Usuario', 'url'=>array('admin')),
+	array('label'=>'Añadir Usuario', 'url'=>array('create'),'active'=>true),
 );
 ?>
 
-<h1>Create Persona</h1>
+<h1>Añadir Usuario</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
