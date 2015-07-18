@@ -44,9 +44,9 @@
       'brandUrl' => Yii::app()->homeUrl,
       'position' => BsHtml::NAVBAR_POSITION_FIXED_TOP,
       'htmlOptions' => array(
-              'containerOptions' => array(
-                  'fluid' => true
-              ),
+              // 'containerOptions' => array(
+              //     'fluid' => true
+              // ),
           ),
 //'color' => BsHtml::NAVBAR_COLOR_INVERSE,
       'items' => array(
