@@ -59,14 +59,16 @@
 							'url' => array('/Usuario/index'),
 							'icon'=> BsHtml::GLYPHICON_COG,
 							'items' => array(
-								BsHtml::dropDownHeader('Administración de Empresas'),
-								array('label' => 'Administrar Empresa','url' => array('/Empresa/admin'),'visible' => TRUE),
-								array('label' => 'Agregar Empresa','url' => array('/Empresa/create'),'visible' => TRUE),
-								BsHtml::menuDivider(),
-								
+								// BsHtml::dropDownHeader('Administración de Empresas'),
+								// array('label' => 'Administrar Empresa','url' => array('/Empresa/admin'),'visible' => TRUE),
+								// array('label' => 'Agregar Empresa','url' => array('/Empresa/create'),'visible' => TRUE),
+								// BsHtml::menuDivider(),
 								BsHtml::dropDownHeader('Administración de Usuarios'),
-								array('label' => 'Administrar Usuarios','url' => array('/persona/admin'),'visible' => TRUE),
-								array('label' => 'Agregar Persona','url' => array('/persona/create'),'visible' => TRUE),
+								array('label' => 'Administrar Usuarios','url' => array('/usuario/admin'),'visible' => TRUE),
+								array('label' => 'Administrar Modulos','url' => array('/usuario/modulos'),'visible' => TRUE),
+								array('label' => 'Administrar Permisos','url' => array('/usuario/permisos'),'visible' => TRUE),
+								array('label' => 'Administrar Roles','url' => array('/usuario/role'),'visible' => TRUE),
+
 								)
 						)
 					)

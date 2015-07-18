@@ -1,27 +1,24 @@
 <?php
 
 /**
- * This is the model class for table "action".
+ * This is the model class for table "controller".
  *
- * The followings are the available columns in table 'action':
- * @property string $ACT_CORREL
+ * The followings are the available columns in table 'controller':
  * @property string $CON_CORREL
- * @property string $ACT_NOMBRE
- * @property string $ACT_FICTICIO
+ * @property string $CON_NOMBRE
+ * @property string $CON_FICTICIO
  *
  * The followings are the available model relations:
- * @property Controller $cONCORREL
- * @property Role[] $roles
- * @property UsuHasAct $usuHasAct
+ * @property Action[] $actions
  */
-class Action extends CActiveRecord
+class Controllers extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'action';
+		return 'controller';
 	}
 
 	/**
@@ -32,12 +29,11 @@ class Action extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('CON_CORREL, ACT_NOMBRE, ACT_FICTICIO', 'required'),
-			array('CON_CORREL', 'length', 'max'=>10),
-			array('ACT_NOMBRE, ACT_FICTICIO', 'length', 'max'=>200),
+			array('CON_NOMBRE, CON_FICTICIO', 'required'),
+			array('CON_NOMBRE, CON_FICTICIO', 'length', 'max'=>200),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('ACT_CORREL, CON_CORREL, ACT_NOMBRE, ACT_FICTICIO', 'safe', 'on'=>'search'),
+			array('CON_CORREL, CON_NOMBRE, CON_FICTICIO', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -49,9 +45,7 @@ class Action extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'cONCORREL' => array(self::BELONGS_TO, 'Controller', 'CON_CORREL'),
-			'roles' => array(self::MANY_MANY, 'Role', 'rol_has_action(ACT_CORREL, ROL_CORREL)'),
-			'usuHasAct' => array(self::HAS_ONE, 'UsuHasAct', 'ACT_CORREL'),
+			'actions' => array(self::HAS_MANY, 'Action', 'CON_CORREL'),
 		);
 	}
 
@@ -61,10 +55,9 @@ class Action extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'ACT_CORREL' => 'Act Correl',
 			'CON_CORREL' => 'Con Correl',
-			'ACT_NOMBRE' => 'Act Nombre',
-			'ACT_FICTICIO' => 'Act Ficticio',
+			'CON_NOMBRE' => 'Con Nombre',
+			'CON_FICTICIO' => 'Con Ficticio',
 		);
 	}
 
@@ -86,10 +79,9 @@ class Action extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('ACT_CORREL',$this->ACT_CORREL,true);
 		$criteria->compare('CON_CORREL',$this->CON_CORREL,true);
-		$criteria->compare('ACT_NOMBRE',$this->ACT_NOMBRE,true);
-		$criteria->compare('ACT_FICTICIO',$this->ACT_FICTICIO,true);
+		$criteria->compare('CON_NOMBRE',$this->CON_NOMBRE,true);
+		$criteria->compare('CON_FICTICIO',$this->CON_FICTICIO,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -100,7 +92,7 @@ class Action extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Action the static model class
+	 * @return Controller the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
