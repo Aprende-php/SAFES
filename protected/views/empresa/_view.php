@@ -6,7 +6,7 @@
 <div class="view">
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('EMP_CORREL')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->EMP_CORREL), array('view', 'id'=>$data->EMP_CORREL)); ?>
+	<?php echo CHtml::link(CHtml::encode($data->EMP_CORREL),array('view','id'=>$data->EMP_CORREL)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('COM_CORREL')); ?>:</b>

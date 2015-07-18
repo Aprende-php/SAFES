@@ -50,6 +50,7 @@ class Empresa extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('COM_CORREL', 'length', 'max'=>10),
+			array('EMP_RUT,EMP_RSOCIAL,EMP_FANTASIA,EMP_PREFIJO,EMP_GIRO,COM_CORREL', 'required'),
 			array('EMP_RUT', 'length', 'max'=>12),
 			array('EMP_RSOCIAL, EMP_FANTASIA, EMP_PREFIJO, EMP_GIRO, EMP_INC, EMP_TELEFONO, EMP_CELULAR, EMP_WEB, EMP_EMAIL, EMP_TWEETER, EMP_FACEBOOK, EMP_SKYPE, EMP_ESTADO', 'length', 'max'=>200),
 			// The following rule is used by search().
@@ -83,22 +84,22 @@ class Empresa extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'EMP_CORREL' => 'Emp Correl',
-			'COM_CORREL' => 'Com Correl',
-			'EMP_RUT' => 'Emp Rut',
-			'EMP_RSOCIAL' => 'Emp Rsocial',
-			'EMP_FANTASIA' => 'Emp Fantasia',
-			'EMP_PREFIJO' => 'Emp Prefijo',
-			'EMP_GIRO' => 'Emp Giro',
-			'EMP_INC' => 'Emp Inc',
-			'EMP_TELEFONO' => 'Emp Telefono',
-			'EMP_CELULAR' => 'Emp Celular',
-			'EMP_WEB' => 'Emp Web',
-			'EMP_EMAIL' => 'Emp Email',
-			'EMP_TWEETER' => 'Emp Tweeter',
-			'EMP_FACEBOOK' => 'Emp Facebook',
-			'EMP_SKYPE' => 'Emp Skype',
-			'EMP_ESTADO' => 'Emp Estado',
+			'EMP_CORREL' => 'Empresa',
+			'COM_CORREL' => 'Comuna',
+			'EMP_RUT' => 'Rut',
+			'EMP_RSOCIAL' => 'Razón social',
+			'EMP_FANTASIA' => 'Nombre Fantasia',
+			'EMP_PREFIJO' => 'Prefijo',
+			'EMP_GIRO' => 'Giro',
+			'EMP_INC' => 'Inc',
+			'EMP_TELEFONO' => 'Telefono',
+			'EMP_CELULAR' => 'Celular',
+			'EMP_WEB' => 'Web',
+			'EMP_EMAIL' => 'Email',
+			'EMP_TWEETER' => 'Tweeter',
+			'EMP_FACEBOOK' => 'Facebook',
+			'EMP_SKYPE' => 'Skype',
+			'EMP_ESTADO' => 'Estado',
 		);
 	}
 

@@ -1,100 +1,33 @@
 <?php
 /* @var $this EmpresaController */
 /* @var $model Empresa */
-/* @var $form CActiveForm */
+/* @var $form BSActiveForm */
 ?>
 
-<div class="wide form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'action'=>Yii::app()->createUrl($this->route),
-	'method'=>'get',
+<?php $form=$this->beginWidget('bootstrap.widgets.BsActiveForm', array(
+    'action'=>Yii::app()->createUrl($this->route),
+    'method'=>'get',
 )); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'EMP_CORREL'); ?>
-		<?php echo $form->textField($model,'EMP_CORREL',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+    <?php echo $form->textFieldControlGroup($model,'EMP_CORREL',array('maxlength'=>10)); ?>
+    <?php echo $form->textFieldControlGroup($model,'COM_CORREL',array('maxlength'=>10)); ?>
+    <?php echo $form->textFieldControlGroup($model,'EMP_RUT',array('maxlength'=>12)); ?>
+    <?php echo $form->textFieldControlGroup($model,'EMP_RSOCIAL',array('maxlength'=>200)); ?>
+    <?php echo $form->textFieldControlGroup($model,'EMP_FANTASIA',array('maxlength'=>200)); ?>
+    <?php echo $form->textFieldControlGroup($model,'EMP_PREFIJO',array('maxlength'=>200)); ?>
+    <?php echo $form->textFieldControlGroup($model,'EMP_GIRO',array('maxlength'=>200)); ?>
+    <?php echo $form->textFieldControlGroup($model,'EMP_INC',array('maxlength'=>200)); ?>
+    <?php echo $form->textFieldControlGroup($model,'EMP_TELEFONO',array('maxlength'=>200)); ?>
+    <?php echo $form->textFieldControlGroup($model,'EMP_CELULAR',array('maxlength'=>200)); ?>
+    <?php echo $form->textFieldControlGroup($model,'EMP_WEB',array('maxlength'=>200)); ?>
+    <?php echo $form->textFieldControlGroup($model,'EMP_EMAIL',array('maxlength'=>200)); ?>
+    <?php echo $form->textFieldControlGroup($model,'EMP_TWEETER',array('maxlength'=>200)); ?>
+    <?php echo $form->textFieldControlGroup($model,'EMP_FACEBOOK',array('maxlength'=>200)); ?>
+    <?php echo $form->textFieldControlGroup($model,'EMP_SKYPE',array('maxlength'=>200)); ?>
+    <?php echo $form->textFieldControlGroup($model,'EMP_ESTADO',array('maxlength'=>200)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'COM_CORREL'); ?>
-		<?php echo $form->textField($model,'COM_CORREL',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'EMP_RUT'); ?>
-		<?php echo $form->textField($model,'EMP_RUT',array('size'=>12,'maxlength'=>12)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'EMP_RSOCIAL'); ?>
-		<?php echo $form->textField($model,'EMP_RSOCIAL',array('size'=>60,'maxlength'=>200)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'EMP_FANTASIA'); ?>
-		<?php echo $form->textField($model,'EMP_FANTASIA',array('size'=>60,'maxlength'=>200)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'EMP_PREFIJO'); ?>
-		<?php echo $form->textField($model,'EMP_PREFIJO',array('size'=>60,'maxlength'=>200)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'EMP_GIRO'); ?>
-		<?php echo $form->textField($model,'EMP_GIRO',array('size'=>60,'maxlength'=>200)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'EMP_INC'); ?>
-		<?php echo $form->textField($model,'EMP_INC',array('size'=>60,'maxlength'=>200)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'EMP_TELEFONO'); ?>
-		<?php echo $form->textField($model,'EMP_TELEFONO',array('size'=>60,'maxlength'=>200)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'EMP_CELULAR'); ?>
-		<?php echo $form->textField($model,'EMP_CELULAR',array('size'=>60,'maxlength'=>200)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'EMP_WEB'); ?>
-		<?php echo $form->textField($model,'EMP_WEB',array('size'=>60,'maxlength'=>200)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'EMP_EMAIL'); ?>
-		<?php echo $form->textField($model,'EMP_EMAIL',array('size'=>60,'maxlength'=>200)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'EMP_TWEETER'); ?>
-		<?php echo $form->textField($model,'EMP_TWEETER',array('size'=>60,'maxlength'=>200)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'EMP_FACEBOOK'); ?>
-		<?php echo $form->textField($model,'EMP_FACEBOOK',array('size'=>60,'maxlength'=>200)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'EMP_SKYPE'); ?>
-		<?php echo $form->textField($model,'EMP_SKYPE',array('size'=>60,'maxlength'=>200)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'EMP_ESTADO'); ?>
-		<?php echo $form->textField($model,'EMP_ESTADO',array('size'=>60,'maxlength'=>200)); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
-	</div>
+    <div class="form-actions">
+        <?php echo BsHtml::submitButton('Search',  array('color' => BsHtml::BUTTON_COLOR_PRIMARY,));?>
+    </div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- search-form -->

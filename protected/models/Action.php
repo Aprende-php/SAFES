@@ -61,10 +61,10 @@ class Action extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'ACT_CORREL' => 'Act Correl',
-			'CON_CORREL' => 'Con Correl',
-			'ACT_NOMBRE' => 'Act Nombre',
-			'ACT_FICTICIO' => 'Act Ficticio',
+			'ACT_CORREL' => 'Acción',
+			'CON_CORREL' => 'Controlador',
+			'ACT_NOMBRE' => 'Acción',
+			'ACT_FICTICIO' => 'Nombre Ficticio',
 		);
 	}
 
