@@ -156,8 +156,10 @@
         'homeLink' => BsHtml::openTag('li') . BsHtml::icon(BsHtml::GLYPHICON_HOME) . BsHtml::closeTag('li')
       ));
     ?><!-- breadcrumbs -->
+    <div class="jumbotron">
     <div class="row">
       <?php echo $content; ?>
+    </div>
     </div>
     
 
