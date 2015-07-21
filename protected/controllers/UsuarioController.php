@@ -70,7 +70,8 @@ class UsuarioController extends Controller
 
 	public function actionModulos()
 	{
-		$this->render('modulos');
+		$model=Controllers::model()->with('actions')->findAll();
+		$this->render('modulos',array('model'=>$model));
 	}
 
 	public function actionPermisos()

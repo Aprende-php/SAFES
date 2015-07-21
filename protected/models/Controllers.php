@@ -55,9 +55,9 @@ class Controllers extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'CON_CORREL' => 'Con Correl',
-			'CON_NOMBRE' => 'Con Nombre',
-			'CON_FICTICIO' => 'Con Ficticio',
+			'CON_CORREL' => 'Controlador',
+			'CON_NOMBRE' => 'Nombre Modulo',
+			'CON_FICTICIO' => 'Nombre Sistema',
 		);
 	}
 
