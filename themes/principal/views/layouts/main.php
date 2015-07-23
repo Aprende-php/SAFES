@@ -86,8 +86,9 @@
 							'icon'=> BsHtml::GLYPHICON_COG,
 							'items' => array(
 								BsHtml::dropDownHeader('Administración de Empresas'),
-								array('label' => 'Administrar Empresa','url' => array('/Empresa/admin'),'visible' => TRUE),
 								array('label' => 'Agregar Empresa','url' => array('/Empresa/create'),'visible' => TRUE),
+								array('label' => 'Administrar Empresa','url' => array('/Empresa/admin'),'visible' => TRUE),
+								array('label' => 'Plan Estrategico','url' => array('/Empresa/create'),'visible' => TRUE),
 								BsHtml::menuDivider(),
 								
 								BsHtml::dropDownHeader('Administración de Usuarios'),
@@ -97,7 +98,7 @@
 						)
 					)
 				),
-				// Roles
+				// Proyectos
 				array(
 					'class' => 'bootstrap.widgets.BsNav',
 					'type' => 'navbar',
@@ -110,7 +111,19 @@
 							'icon'=> BsHtml::GLYPHICON_SAVED,
 							'items' => array(
 								BsHtml::dropDownHeader('Proyectos'),
-								array('label' => 'Agregar Tasa de accidentes','url' => array('/indicador/create'),'visible' => TRUE),
+								array('label' => 'Informe Ejecutivo','url' => array('/Informe/create'),'visible' => TRUE),
+								array('label' => 'Crear Informe Ejecutivo','url' => array('/Informe/create'),'visible' => TRUE),
+								array('label' => 'Formular Proyecto','url' => array('/indicador/create'),'visible' => TRUE),
+								array('label' => 'Propuesta Proyecto','url' => array('/indicador/create'),'visible' => TRUE),
+								array('label' => 'Administrar Proyecto','url' => array('/indicador/create'),'visible' => TRUE),
+								array('label' => 'Evaluacion de Proyecto','url' => array('/indicador/create'),'visible' => TRUE),
+								array('label' => 'Revicion de Proyecto','url' => array('/indicador/create'),'visible' => TRUE),
+								array('label' => 'Consulta Proyectos','url' => array('/indicador/create'),'visible' => TRUE),
+								array('label' => 'Estado Proyectos','url' => array('/indicador/create'),'visible' => TRUE),
+								BsHtml::menuDivider(),
+								BsHtml::dropDownHeader('Bases de Proyecto'),
+								array('label' => 'Crear Bases de Proyectos','url' => array('/indicador/create'),'visible' => TRUE),
+								array('label' => 'Administrar Bases de Proyectos','url' => array('/indicador/create'),'visible' => TRUE),
 								BsHtml::menuDivider(),
 								BsHtml::dropDownHeader('Accidentes de trabajo'),
 								array('label' => 'Agregar Accidente','url' => array('/accidente/ingresarForestal'),'visible' => TRUE),
@@ -150,15 +163,16 @@
 							'url' => array(
 								'/site/index'
 							),
-					'icon'=>BsHtml::GLYPHICON_USER,
+							'icon'=>BsHtml::GLYPHICON_USER,
+							'visible' => !Yii::app()->user->isGuest,
 							'items' => array(
 
-								array('icon'=>BsHtml::GLYPHICON_USER,'label' => 'Cambiar Contraseña','url' => array('/usuario/changepassword'),'visible' => !Yii::app()->user->isGuest),
+								array('icon'=>BsHtml::GLYPHICON_USER,'label' => 'Cambiar Contraseña','url' => array('/usuario/changepassword')),
 								BsHtml::menuDivider(),
-								array('icon'=>BsHtml::GLYPHICON_LOG_OUT,'label' => 'Cerrar Sesión','url' => array('/site/logout'),'visible' => !Yii::app()->user->isGuest)
+								array('icon'=>BsHtml::GLYPHICON_LOG_OUT,'label' => 'Cerrar Sesión','url' => array('/site/logout'))
 						
-							)
-						)
+							),
+						),
 					),
 					'htmlOptions' => array(
 						'pull'=> BsHtml::NAVBAR_NAV_PULL_RIGHT
