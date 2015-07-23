@@ -1,24 +1,26 @@
 <?php
 
 /**
- * This is the model class for table "controler".
+ * This is the model class for table "comuna".
  *
- * The followings are the available columns in table 'controler':
- * @property string $CON_CORREL
- * @property string $CON_NOMBRE
- * @property string $CON_FICTICIO
+ * The followings are the available columns in table 'comuna':
+ * @property string $COM_CORREL
+ * @property string $REG_CORREL
+ * @property string $COM_NOMBRE
  *
  * The followings are the available model relations:
- * @property Action[] $actions
+ * @property Region $rEGCORREL
+ * @property Empresa[] $empresas
+ * @property Persona[] $personas
  */
-class Controler extends CActiveRecord
+class Comuna extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'controler';
+		return 'comuna';
 	}
 
 	/**
@@ -29,11 +31,12 @@ class Controler extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('CON_NOMBRE, CON_FICTICIO', 'required'),
-			array('CON_NOMBRE, CON_FICTICIO', 'length', 'max'=>200),
+			array('REG_CORREL, COM_NOMBRE', 'required'),
+			array('REG_CORREL', 'length', 'max'=>10),
+			array('COM_NOMBRE', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('CON_CORREL, CON_NOMBRE, CON_FICTICIO', 'safe', 'on'=>'search'),
+			array('COM_CORREL, REG_CORREL, COM_NOMBRE', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -45,7 +48,9 @@ class Controler extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'actions' => array(self::HAS_MANY, 'Action', 'CON_CORREL'),
+			'region' => array(self::BELONGS_TO, 'Region', 'REG_CORREL'),
+			'empresas' => array(self::HAS_MANY, 'Empresa', 'COM_CORREL'),
+			'personas' => array(self::HAS_MANY, 'Persona', 'COM_CORREL'),
 		);
 	}
 
@@ -55,9 +60,9 @@ class Controler extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'CON_CORREL' => 'Con Correl',
-			'CON_NOMBRE' => 'Con Nombre',
-			'CON_FICTICIO' => 'Con Ficticio',
+			'COM_CORREL' => 'Com Correl',
+			'REG_CORREL' => 'Reg Correl',
+			'COM_NOMBRE' => 'Com Nombre',
 		);
 	}
 
@@ -79,9 +84,9 @@ class Controler extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('CON_CORREL',$this->CON_CORREL,true);
-		$criteria->compare('CON_NOMBRE',$this->CON_NOMBRE,true);
-		$criteria->compare('CON_FICTICIO',$this->CON_FICTICIO,true);
+		$criteria->compare('COM_CORREL',$this->COM_CORREL,true);
+		$criteria->compare('REG_CORREL',$this->REG_CORREL,true);
+		$criteria->compare('COM_NOMBRE',$this->COM_NOMBRE,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -92,7 +97,7 @@ class Controler extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Controler the static model class
+	 * @return Comuna the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

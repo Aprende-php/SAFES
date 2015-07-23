@@ -6,7 +6,7 @@
 <?php
 $this->breadcrumbs=array(
 	'Empresas'=>array('index'),
-	'Create',
+	'Añadir',
 );
 
 $this->menu=array(
@@ -14,7 +14,6 @@ $this->menu=array(
 	array('icon' => 'glyphicon glyphicon-tasks','label'=>'Manage Empresa', 'url'=>array('admin')),
 );
 ?>
-
-<?php echo BsHtml::pageHeader('Create','Empresa') ?>
+<?php echo BsHtml::formActions(BsHtml::pageHeader('Añadir','Empresa'));?>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
