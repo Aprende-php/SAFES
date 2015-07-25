@@ -46,3 +46,4 @@
     </div>
 
 <?php $this->endWidget(); ?>
+<?php var_dump(RUBRO::model()->with('SUBRUBRO','ACTIVIDAD')->findAll()) ?>
