@@ -1,7 +1,5 @@
 <?php
-/* @var $this EmpresaController */
-/* @var $model Empresa */
-/* @var $form BSActiveForm */
+Valida::setRut($model,'EMP_RUT');
 ?>
 
 <?php $form=$this->beginWidget('bootstrap.widgets.BsActiveForm', array(

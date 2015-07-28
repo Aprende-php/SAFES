@@ -50,15 +50,27 @@ class Empresa extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('COM_CORREL', 'length', 'max'=>10),
-			array('EMP_RUT,EMP_RSOCIAL,EMP_FANTASIA,EMP_PREFIJO,EMP_GIRO,COM_CORREL', 'required'),
+			array('EMP_RUT,EMP_RSOCIAL,EMP_FANTASIA,EMP_PREFIJO,COM_CORREL', 'required'),
 			array('EMP_RUT', 'length', 'max'=>12),
 			array('EMP_RSOCIAL, EMP_FANTASIA, EMP_PREFIJO, EMP_GIRO, EMP_INC, EMP_TELEFONO, EMP_CELULAR, EMP_WEB, EMP_EMAIL, EMP_TWEETER, EMP_FACEBOOK, EMP_SKYPE, EMP_ESTADO', 'length', 'max'=>200),
-			// The following rule is used by search().
+			array('EMP_RUT', 'validaRut'),
 			// @todo Please remove those attributes that should not be searched.
 			array('EMP_CORREL, COM_CORREL, EMP_RUT, EMP_RSOCIAL, EMP_FANTASIA, EMP_PREFIJO, EMP_GIRO, EMP_INC, EMP_TELEFONO, EMP_CELULAR, EMP_WEB, EMP_EMAIL, EMP_TWEETER, EMP_FACEBOOK, EMP_SKYPE, EMP_ESTADO', 'safe', 'on'=>'search'),
 		);
 	}
-
+	public function validaRut($attribute,$params)
+	{
+		if (!Valida::validaRut($this->$attribute)) {
+			 $this->addError($attribute, 'El Rut ingresado no es valido.');
+		}
+	    // if ($params['strength'] === self::WEAK)
+	    //     $pattern = '/^(?=.*[a-zA-Z0-9]).{5,}$/';  
+	    // elseif ($params['strength'] === self::STRONG)
+	    //     $pattern = '/^(?=.*\d(?=.*\d))(?=.*[a-zA-Z](?=.*[a-zA-Z])).{5,}$/';  
+	 
+	    // if(!preg_match($pattern, $this->$attribute))
+	    //   $this->addError($attribute, 'your password is not strong enough!');
+	}
 	/**
 	 * @return array relational rules.
 	 */
