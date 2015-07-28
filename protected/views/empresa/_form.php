@@ -9,17 +9,12 @@
     // 'enableAjaxValidation'=>false,
     'enableClientValidation'=>true,
 )); ?>
-    <?php echo $form->errorSummary($model); ?>
     <div class="row">
+    <?php echo $form->errorSummary($model); ?>
         <div class="col-sm-12 col-md-6">
     <?php
-        $Listado=array();
-        $Regiones=Region::model()->with('comunas')->findAll();
-        foreach ($Regiones as $Region) {
-            $Listado[$Region->REG_SIMBOLO.' '.$Region->REG_NOMBRE]=CHtml::listData($Region->comunas,'COM_CORREL', 'COM_NOMBRE');
-        }
         echo $form->dropDownListControlGroup($model, 'COM_CORREL',
-            $Listado, 
+            Region::model()->getComunas(), 
             array(
                     'empty' => 'Seleccione la Comuna'
             )
@@ -29,21 +24,47 @@
     <?php echo $form->textFieldControlGroup($model,'EMP_RSOCIAL',array('maxlength'=>200)); ?>
     <?php echo $form->textFieldControlGroup($model,'EMP_FANTASIA',array('maxlength'=>200)); ?>
     <?php echo $form->textFieldControlGroup($model,'EMP_PREFIJO',array('maxlength'=>200)); ?>
-    <?php echo $form->textFieldControlGroup($model,'EMP_GIRO',array('maxlength'=>200)); ?>
-    <?php echo $form->textFieldControlGroup($model,'EMP_INC',array('maxlength'=>200)); ?>
-        </div>        
-        <div class="col-sm-12 col-md-6">
+    <?php //echo $form->textFieldControlGroup($model,'EMP_INC',array('maxlength'=>200)); ?>
     <?php echo $form->textFieldControlGroup($model,'EMP_TELEFONO',array('maxlength'=>200)); ?>
+    </div>        
+    <div class="col-sm-12 col-md-6">
     <?php echo $form->textFieldControlGroup($model,'EMP_CELULAR',array('maxlength'=>200)); ?>
     <?php echo $form->textFieldControlGroup($model,'EMP_WEB',array('maxlength'=>200)); ?>
     <?php echo $form->textFieldControlGroup($model,'EMP_EMAIL',array('maxlength'=>200)); ?>
     <?php echo $form->textFieldControlGroup($model,'EMP_TWEETER',array('maxlength'=>200)); ?>
     <?php echo $form->textFieldControlGroup($model,'EMP_FACEBOOK',array('maxlength'=>200)); ?>
     <?php echo $form->textFieldControlGroup($model,'EMP_SKYPE',array('maxlength'=>200)); ?>
-    <!-- <?php echo $form->textFieldControlGroup($model,'EMP_ESTADO',array('maxlength'=>200)); ?> -->
-        </div>
-    <?php echo BsHtml::formActions(array(BsHtml::submitButton('Guardar', array('color' => BsHtml::BUTTON_COLOR_PRIMARY))));?>
+    <?php //echo $form->textFieldControlGroup($model,'EMP_ESTADO',array('maxlength'=>200)); ?>
     </div>
-
-<?php $this->endWidget(); ?>
-<?php var_dump(RUBRO::model()->with('SUBRUBRO','ACTIVIDAD')->findAll()) ?>
+    </div>
+    <div class="row">
+    <div class="col-sm-12 col-md-6">
+    <?php
+        echo $form->dropDownListControlGroup($model, '[]EMP_GIRO',
+            Rubro::model()->getActividad(), 
+            array(
+                    'empty' => 'Favor Elegir Giros de la Empresa',
+                     'onchange'=>'if($("#Empresa_EMP_GIRO").val())$(".EMP_GIRO").append(\'<div><input name="EMP_GIRO[\'+$("#Empresa_EMP_GIRO").val()+\']" value="\'+$("#Empresa_EMP_GIRO option:selected").text()+\'"class="form-control" type="text"><a href="#" class="remove_field">Quitar</a></div>\');'
+            )
+        );
+    ?>
+    <div class="EMP_GIRO">
+    <?php if (isset($_POST['EMP_GIRO']))
+        foreach($_POST['EMP_GIRO'] as $key => $value): ?>
+        <div>
+            <input name="EMP_GIRO[<?php echo $key ?>]" value="<?php echo $value ?>"class="form-control" type="text">
+            <a href="#" class="remove_field">Quitar</a>
+        </div> 
+    <?php endforeach?>
+    </div>
+     <script>
+        $(document).ready(function() {
+            $(".EMP_GIRO").on("click",".remove_field", function(e){
+                e.preventDefault(); $(this).parent('div').remove();
+            })
+        });
+    </script>
+    <?php    echo BsHtml::submitButton('Guardar', array(        'color' => BsHtml::BUTTON_COLOR_PRIMARY    ));?>
+    </div>
+    </div>
+    <?php $this->endWidget(); ?>

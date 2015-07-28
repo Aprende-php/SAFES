@@ -1,20 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "rubro".
+ * This is the model class for table "emp_has_act".
  *
- * The followings are the available columns in table 'rubro':
- * @property integer $RUB_CORREL
- * @property string $RUB_NOMBRE
+ * The followings are the available columns in table 'emp_has_act':
+ * @property string $EMP_CORREL
+ * @property integer $ACT_CORREL
  */
-class Rubro extends CActiveRecord
+class EmpHasAct extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'rubro';
+		return 'emp_has_act';
 	}
 
 	/**
@@ -25,12 +25,12 @@ class Rubro extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('RUB_CORREL, RUB_NOMBRE', 'required'),
-			array('RUB_CORREL', 'numerical', 'integerOnly'=>true),
-			array('RUB_NOMBRE', 'length', 'max'=>150),
+			array('EMP_CORREL, ACT_CORREL', 'required'),
+			array('ACT_CORREL', 'numerical', 'integerOnly'=>true),
+			array('EMP_CORREL', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('RUB_CORREL, RUB_NOMBRE', 'safe', 'on'=>'search'),
+			array('EMP_CORREL, ACT_CORREL', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -39,8 +39,9 @@ class Rubro extends CActiveRecord
 	 */
 	public function relations()
 	{
+		// NOTE: you may need to adjust the relation name and the related
+		// class name for the relations automatically generated below.
 		return array(
-			'SUBRUBRO' => array(self::HAS_MANY, 'SUBRUBRO', 'RUB_CORREL'),
 		);
 	}
 
@@ -50,27 +51,11 @@ class Rubro extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'RUB_CORREL' => 'Rub Correl',
-			'RUB_NOMBRE' => 'Rub Nombre',
+			'EMP_CORREL' => 'Emp Correl',
+			'ACT_CORREL' => 'Act Correl',
 		);
 	}
-	public function getActividad()
-	{
-		$Listado=array();
-        $Rubros=$this->with('SUBRUBRO.ACTIVIDAD')->findAll();
-        foreach ($Rubros as $Rubro) {
-            $ListRub=array();
-            foreach ($Rubro->SUBRUBRO as $subrubro) {
-            	$ListAct=array();
-            	foreach ($subrubro->ACTIVIDAD as $actividad) {
-            		$ListAct[$actividad->ACT_CORREL]=$actividad->ACT_CORREL.' '.$actividad->ACT_NOMBRE;
-            	}
-                $ListRub[$subrubro->SUB_NOMBRE]=$ListAct;
-            }
-            $Listado[$Rubro->RUB_NOMBRE]=$ListRub;
-        }
-        return $Listado;
-	}
+
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 *
@@ -89,8 +74,8 @@ class Rubro extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('RUB_CORREL',$this->RUB_CORREL);
-		$criteria->compare('RUB_NOMBRE',$this->RUB_NOMBRE,true);
+		$criteria->compare('EMP_CORREL',$this->EMP_CORREL,true);
+		$criteria->compare('ACT_CORREL',$this->ACT_CORREL);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -101,7 +86,7 @@ class Rubro extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Rubro the static model class
+	 * @return EmpHasAct the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

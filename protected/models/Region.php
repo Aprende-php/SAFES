@@ -61,7 +61,15 @@ class Region extends CActiveRecord
 			'REG_SIMBOLO' => 'Símbolo',
 		);
 	}
-
+	public function getComunas()
+	{
+		$Listado=array();
+        $Regiones=$this->with('comunas')->findAll();
+        foreach ($Regiones as $Region) {
+            $Listado[$Region->REG_SIMBOLO.' '.$Region->REG_NOMBRE]=CHtml::listData($Region->comunas,'COM_CORREL', 'COM_NOMBRE');
+        }
+        return $Listado;
+	}
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 *
