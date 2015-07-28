@@ -17,23 +17,33 @@ $this->menu=array(
     array('icon' => 'glyphicon glyphicon-tasks','label'=>'Manage Empresa', 'url'=>array('admin')),
 );
 ?>
-
-<?php echo BsHtml::pageHeader('View','Empresa '.$model->EMP_CORREL) ?>
-
+<?php echo BsHtml::pageHeader('Ver','Empresa '.$model->EMP_RSOCIAL) ?>
+<?php $Actividades = 
+Yii::app()->db->createCommand()
+	->select('a.ACT_CORREL,ACT_NOMBRE')
+	->from('actividad a')
+	->join('emp_has_act ea','a.ACT_CORREL=ea.ACT_CORREL')
+	->join('empresa e','e.EMP_CORREL=ea.EMP_CORREL')
+    ->where('e.EMP_CORREL=:EMP_CORREL',array(':EMP_CORREL'=>$model->EMP_CORREL))
+    ->queryAll();
+	$Lista='';
+    foreach ($Actividades as $value) {
+		$Lista.='<li>'.$value['ACT_CORREL'].' '.$value['ACT_NOMBRE'].'</li>';
+	} 
+?>
 <?php $this->widget('zii.widgets.CDetailView',array(
 	'htmlOptions' => array(
 		'class' => 'table table-striped table-condensed table-hover',
 	),
 	'data'=>$model,
 	'attributes'=>array(
-		'EMP_CORREL',
-		'COM_CORREL',
+		// 'EMP_CORREL',
+		'Comuna.COM_NOMBRE',
 		'EMP_RUT',
 		'EMP_RSOCIAL',
 		'EMP_FANTASIA',
 		'EMP_PREFIJO',
-		'EMP_GIRO',
-		'EMP_INC',
+		// 'EMP_INC',
 		'EMP_TELEFONO',
 		'EMP_CELULAR',
 		'EMP_WEB',
@@ -41,6 +51,10 @@ $this->menu=array(
 		'EMP_TWEETER',
 		'EMP_FACEBOOK',
 		'EMP_SKYPE',
-		'EMP_ESTADO',
+		array(
+			      'label'=>'Giro',
+            'type'=>'raw',
+			'value'=>$Lista)
+		// 'EMP_ESTADO',
 	),
 )); ?>

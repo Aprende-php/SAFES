@@ -56,6 +56,7 @@ class Empresa extends CActiveRecord
 			array('EMP_RUT', 'validaRut'),
 			// @todo Please remove those attributes that should not be searched.
 			array('EMP_CORREL, COM_CORREL, EMP_RUT, EMP_RSOCIAL, EMP_FANTASIA, EMP_PREFIJO, EMP_GIRO, EMP_INC, EMP_TELEFONO, EMP_CELULAR, EMP_WEB, EMP_EMAIL, EMP_TWEETER, EMP_FACEBOOK, EMP_SKYPE, EMP_ESTADO', 'safe', 'on'=>'search'),
+			array('EMP_RUT','unique', 'message'=>'La empresa se encuentra inscrita.'),
 		);
 	}
 	public function validaRut($attribute,$params)
@@ -63,13 +64,6 @@ class Empresa extends CActiveRecord
 		if (!Valida::validaRut($this->$attribute)) {
 			 $this->addError($attribute, 'El Rut ingresado no es valido.');
 		}
-	    // if ($params['strength'] === self::WEAK)
-	    //     $pattern = '/^(?=.*[a-zA-Z0-9]).{5,}$/';  
-	    // elseif ($params['strength'] === self::STRONG)
-	    //     $pattern = '/^(?=.*\d(?=.*\d))(?=.*[a-zA-Z](?=.*[a-zA-Z])).{5,}$/';  
-	 
-	    // if(!preg_match($pattern, $this->$attribute))
-	    //   $this->addError($attribute, 'your password is not strong enough!');
 	}
 	/**
 	 * @return array relational rules.
@@ -80,9 +74,10 @@ class Empresa extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'departamentos' => array(self::HAS_MANY, 'Departamento', 'EMP_CORREL'),
+			'EmpHasAct' => array(self::HAS_MANY, 'EmpHasAct', 'EMP_CORREL'),
 			'bases' => array(self::MANY_MANY, 'Base', 'emp_has_bas(EMP_CORREL, BAS_CORREL)'),
 			'roles' => array(self::MANY_MANY, 'Role', 'emp_has_rol(EMP_CORREL, ROL_CORREL)'),
-			'cOMCORREL' => array(self::BELONGS_TO, 'Comuna', 'COM_CORREL'),
+			'Comuna' => array(self::BELONGS_TO, 'Comuna', 'COM_CORREL'),
 			'personas' => array(self::HAS_MANY, 'Persona', 'EMP_CORREL'),
 			'planEstrategicos' => array(self::HAS_MANY, 'PlanEstrategico', 'EMP_CORREL'),
 			'propuestas' => array(self::HAS_MANY, 'Propuesta', 'EMP_CORREL'),

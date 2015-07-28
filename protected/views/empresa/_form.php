@@ -62,7 +62,8 @@ Valida::setRut($model,'EMP_RUT');
             })
         });
     </script>
-    <?php    echo BsHtml::submitButton('Guardar', array(        'color' => BsHtml::BUTTON_COLOR_PRIMARY    ));?>
+    <?php    echo BsHtml::submitButton('Guardar', array('color' => BsHtml::BUTTON_COLOR_PRIMARY));?>
+    </div>
     </div>
     </div>
     <?php $this->endWidget(); ?>

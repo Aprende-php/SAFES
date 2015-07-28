@@ -27,7 +27,6 @@ class EmpHasAct extends CActiveRecord
 		return array(
 			array('EMP_CORREL, ACT_CORREL', 'required'),
 			array('ACT_CORREL', 'numerical', 'integerOnly'=>true),
-			array('EMP_CORREL', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('EMP_CORREL, ACT_CORREL', 'safe', 'on'=>'search'),
@@ -42,6 +41,8 @@ class EmpHasAct extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'ActividadEmpresa' => array(self::HAS_ONE, 'Actividad', 'ACT_CORREL'),
+			'Actividad' => array(self::HAS_MANY, 'Actividad', 'ACT_CORREL'),
 		);
 	}
 

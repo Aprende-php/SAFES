@@ -65,12 +65,19 @@ class EmpresaController extends Controller
 		$model=new Empresa;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
 		if(isset($_POST['Empresa']))
 		{
 			$model->attributes=$_POST['Empresa'];
-			if($model->save())
+			if($model->save()){
+				if (isset($_POST['EMP_GIRO']))
+        			foreach($_POST['EMP_GIRO'] as $key => $value){
+        				$act=new EmpHasAct;
+        				$act->EMP_CORREL=intval($model->EMP_CORREL);
+        				$act->ACT_CORREL=$key;
+        				$act->save();
+        			}
 				$this->redirect(array('view','id'=>$model->EMP_CORREL));
+			}
 		}
 
 		$this->render('create',array(

@@ -60,9 +60,9 @@ class Comuna extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'COM_CORREL' => 'Com Correl',
+			'COM_CORREL' => 'Comuna',
 			'REG_CORREL' => 'Reg Correl',
-			'COM_NOMBRE' => 'Com Nombre',
+			'COM_NOMBRE' => 'Comuna',
 		);
 	}
 
