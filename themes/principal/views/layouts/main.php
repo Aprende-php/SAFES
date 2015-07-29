@@ -29,7 +29,7 @@
 		echo Yii::app()->theme->baseUrl . '/assets/js/respond.min.js';
 		?>"></script>
 		<![endif]-->
-		<style type="text/css">body { padding-top: 70px; }</style>
+		<style type="text/css">body { padding-top: 70px;background-image: url("<?php echo Yii::app()->theme->baseUrl.'/images/background.jpg'; ?>"); }</style>
 	</head>
 	<body>
 	<div class="container">
