@@ -198,6 +198,7 @@
 	?>
 		<!-- contenido -->
 		<div class="jumbotron">
+		<?php var_dump(Usuario::checkAccess()); ?>
 			<div class="row">
 				<?php echo $content; ?>
 			</div>                    

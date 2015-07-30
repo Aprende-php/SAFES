@@ -1,28 +1,22 @@
 <?php
 
 /**
- * This is the model class for table "usuario".
+ * This is the model class for table "usu_permisos".
  *
- * The followings are the available columns in table 'usuario':
+ * The followings are the available columns in table 'usu_permisos':
  * @property string $PER_CORREL
- * @property string $USU_ESTADO
- * @property string $USU_PASSWORD
- * @property string $USU_CREATE
- * @property string $USU_MODIFIED
- *
- * The followings are the available model relations:
- * @property UsuHasAct[] $usuHasActs
- * @property UsuHasRol[] $usuHasRols
- * @property Persona $pERCORREL
+ * @property string $ACT_NOMBRE
+ * @property string $CON_NOMBRE
+ * @property string $TIPO
  */
-class Usuario extends CActiveRecord
+class Permisos extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'usuario';
+		return 'usu_permisos';
 	}
 
 	/**
@@ -33,24 +27,13 @@ class Usuario extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('PER_CORREL, USU_CREATE', 'required'),
-			array('PER_CORREL', 'length', 'max'=>10),
-			array('USU_ESTADO, USU_PASSWORD', 'length', 'max'=>200),
-			array('USU_MODIFIED', 'safe'),
+			array('PER_CORREL', 'length', 'max'=>11),
+			array('ACT_NOMBRE, CON_NOMBRE', 'length', 'max'=>200),
+			array('TIPO', 'length', 'max'=>5),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('PER_CORREL, USU_ESTADO, USU_PASSWORD, USU_CREATE, USU_MODIFIED', 'safe', 'on'=>'search'),
+			array('PER_CORREL, ACT_NOMBRE, CON_NOMBRE, TIPO', 'safe', 'on'=>'search'),
 		);
-	}
-
-	public function checkAccess($controller=null,$action=null)
-	{
-		// $user=Yii::app()->user->getId();
-		$user=2;
-		if ($controller!==null&$action===null)
-			return Permisos::model()->exists("CON_NOMBRE='$controller' AND PER_CORREL=$user AND TIPO ='ALLOW'");
-		if ($controller===null&$action===null){$controller=$this->id;$action=$this->action->id;}
-			return Permisos::model()->exists("CON_NOMBRE='$controller' AND ACT_NOMBRE='$action' AND PER_CORREL=$user AND TIPO ='ALLOW'");
 	}
 
 	/**
@@ -61,9 +44,6 @@ class Usuario extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'usuHasActs' => array(self::HAS_MANY, 'UsuHasAct', 'PER_CORREL'),
-			'usuHasRols' => array(self::HAS_MANY, 'UsuHasRol', 'PER_CORREL'),
-			'pERCORREL' => array(self::BELONGS_TO, 'Persona', 'PER_CORREL'),
 		);
 	}
 
@@ -74,10 +54,9 @@ class Usuario extends CActiveRecord
 	{
 		return array(
 			'PER_CORREL' => 'Per Correl',
-			'USU_ESTADO' => 'Usu Estado',
-			'USU_PASSWORD' => 'Usu Password',
-			'USU_CREATE' => 'Usu Create',
-			'USU_MODIFIED' => 'Usu Modified',
+			'ACT_NOMBRE' => 'Act Nombre',
+			'CON_NOMBRE' => 'Con Nombre',
+			'TIPO' => 'Tipo',
 		);
 	}
 
@@ -100,10 +79,9 @@ class Usuario extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('PER_CORREL',$this->PER_CORREL,true);
-		$criteria->compare('USU_ESTADO',$this->USU_ESTADO,true);
-		$criteria->compare('USU_PASSWORD',$this->USU_PASSWORD,true);
-		$criteria->compare('USU_CREATE',$this->USU_CREATE,true);
-		$criteria->compare('USU_MODIFIED',$this->USU_MODIFIED,true);
+		$criteria->compare('ACT_NOMBRE',$this->ACT_NOMBRE,true);
+		$criteria->compare('CON_NOMBRE',$this->CON_NOMBRE,true);
+		$criteria->compare('TIPO',$this->TIPO,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -114,7 +92,7 @@ class Usuario extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Usuario the static model class
+	 * @return Permisos the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
