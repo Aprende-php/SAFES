@@ -54,20 +54,20 @@
 					'activateParents' => true,
 					'items' => array(
 						array(
-							'visible' => TRUE,
+							'visible' => Usuario::checkAccess('usuario'),
 							'label' => 'Usuarios',
 							'url' => array('/Usuario/index'),
 							'icon'=> BsHtml::GLYPHICON_COG,
 							'items' => array(
 								// BsHtml::dropDownHeader('Administración de Empresas'),
-								// array('label' => 'Administrar Empresa','url' => array('/Empresa/admin'),'visible' => TRUE),
-								// array('label' => 'Agregar Empresa','url' => array('/Empresa/create'),'visible' => TRUE),
+								// array('label' => 'Administrar Empresa','url' => array('/Empresa/admin'),'visible' => Usuario::checkAccess('usuario')),
+								// array('label' => 'Agregar Empresa','url' => array('/Empresa/create'),'visible' => Usuario::checkAccess('usuario')),
 								// BsHtml::menuDivider(),
 								BsHtml::dropDownHeader('Administración de Usuarios'),
-								array('label' => 'Administrar Usuarios','url' => array('/usuario/admin'),'visible' => TRUE),
-								array('label' => 'Administrar Modulos','url' => array('/usuario/modulos'),'visible' => TRUE),
-								array('label' => 'Administrar Permisos','url' => array('/usuario/permisos'),'visible' => TRUE),
-								array('label' => 'Administrar Roles','url' => array('/usuario/role'),'visible' => TRUE),
+								array('label' => 'Administrar Usuarios','url' => array('/usuario/admin'),'visible' => Usuario::checkAccess('usuario','admin')),
+								array('label' => 'Administrar Modulos','url' => array('/usuario/modulos'),'visible' => Usuario::checkAccess('usuario','modulos')),
+								array('label' => 'Administrar Permisos','url' => array('/usuario/permisos'),'visible' => Usuario::checkAccess('usuario','permisos')),
+								array('label' => 'Administrar Roles','url' => array('/usuario/role'),'visible' => Usuario::checkAccess('usuario','role')),
 
 								)
 						)
@@ -80,20 +80,20 @@
 					'activateParents' => true,
 					'items' => array(
 						array(
-							'visible' => TRUE,
+							'visible' => Usuario::checkAccess('empresa'),
 							'label' => 'Empresa',
 							'url' => array('/Usuario/index'),
 							'icon'=> BsHtml::GLYPHICON_COG,
 							'items' => array(
 								BsHtml::dropDownHeader('Administración de Empresas'),
-								array('label' => 'Agregar Empresa','url' => array('/Empresa/create'),'visible' => TRUE),
-								array('label' => 'Administrar Empresa','url' => array('/Empresa/admin'),'visible' => TRUE),
-								array('label' => 'Plan Estrategico','url' => array('/Empresa/create'),'visible' => TRUE),
+								array('label' => 'Agregar Empresa','url' => array('/Empresa/create'),'visible' => Usuario::checkAccess('empresa','create')),
+								array('label' => 'Administrar Empresa','url' => array('/Empresa/admin'),'visible' => Usuario::checkAccess('empresa','admin')),
+								array('label' => 'Plan Estrategico','url' => array('/Empresa/create'),'visible' => Usuario::checkAccess('empresa','create')),
 								BsHtml::menuDivider(),
 								
 								BsHtml::dropDownHeader('Administración de Usuarios'),
-								array('label' => 'Administrar Usuarios','url' => array('/persona/admin'),'visible' => TRUE),
-								array('label' => 'Agregar Persona','url' => array('/persona/create'),'visible' => TRUE),
+								array('label' => 'Administrar Usuarios','url' => array('/persona/admin'),'visible' => Usuario::checkAccess('empresa','admin')),
+								array('label' => 'Agregar Persona','url' => array('/persona/create'),'visible' => Usuario::checkAccess('empresa','create')),
 								)
 						)
 					)
@@ -105,28 +105,28 @@
 					'activateParents' => true,
 					'items' => array(
 						array(
-							'visible' => TRUE,
+							'visible' => Usuario::checkAccess('proyecto'),
 							'label' => 'Proyectos',
 							'url' => array('/Usuario/index'),
 							'icon'=> BsHtml::GLYPHICON_SAVED,
 							'items' => array(
 								BsHtml::dropDownHeader('Proyectos'),
-								array('label' => 'Informe Ejecutivo','url' => array('/Informe/create'),'visible' => TRUE),
-								array('label' => 'Crear Informe Ejecutivo','url' => array('/Informe/create'),'visible' => TRUE),
-								array('label' => 'Formular Proyecto','url' => array('/indicador/create'),'visible' => TRUE),
-								array('label' => 'Propuesta Proyecto','url' => array('/indicador/create'),'visible' => TRUE),
-								array('label' => 'Administrar Proyecto','url' => array('/indicador/create'),'visible' => TRUE),
-								array('label' => 'Evaluacion de Proyecto','url' => array('/indicador/create'),'visible' => TRUE),
-								array('label' => 'Revicion de Proyecto','url' => array('/indicador/create'),'visible' => TRUE),
-								array('label' => 'Consulta Proyectos','url' => array('/indicador/create'),'visible' => TRUE),
-								array('label' => 'Estado Proyectos','url' => array('/indicador/create'),'visible' => TRUE),
+								array('label' => 'Informe Ejecutivo','url' => array('/Informe/create'),'visible' => Usuario::checkAccess('proyecto')),
+								array('label' => 'Crear Informe Ejecutivo','url' => array('/Informe/create'),'visible' => Usuario::checkAccess('proyecto')),
+								array('label' => 'Formular Proyecto','url' => array('/indicador/create'),'visible' => Usuario::checkAccess('proyecto')),
+								array('label' => 'Propuesta Proyecto','url' => array('/indicador/create'),'visible' => Usuario::checkAccess('proyecto')),
+								array('label' => 'Administrar Proyecto','url' => array('/indicador/create'),'visible' => Usuario::checkAccess('proyecto')),
+								array('label' => 'Evaluacion de Proyecto','url' => array('/indicador/create'),'visible' => Usuario::checkAccess('proyecto')),
+								array('label' => 'Revicion de Proyecto','url' => array('/indicador/create'),'visible' => Usuario::checkAccess('proyecto')),
+								array('label' => 'Consulta Proyectos','url' => array('/indicador/create'),'visible' => Usuario::checkAccess('proyecto')),
+								array('label' => 'Estado Proyectos','url' => array('/indicador/create'),'visible' => Usuario::checkAccess('proyecto')),
 								BsHtml::menuDivider(),
 								BsHtml::dropDownHeader('Bases de Proyecto'),
-								array('label' => 'Crear Bases de Proyectos','url' => array('/indicador/create'),'visible' => TRUE),
-								array('label' => 'Administrar Bases de Proyectos','url' => array('/indicador/create'),'visible' => TRUE),
+								array('label' => 'Crear Bases de Proyectos','url' => array('/indicador/create'),'visible' => Usuario::checkAccess('proyecto')),
+								array('label' => 'Administrar Bases de Proyectos','url' => array('/indicador/create'),'visible' => Usuario::checkAccess('proyecto')),
 								BsHtml::menuDivider(),
 								BsHtml::dropDownHeader('Accidentes de trabajo'),
-								array('label' => 'Agregar Accidente','url' => array('/accidente/ingresarForestal'),'visible' => TRUE),
+								array('label' => 'Agregar Accidente','url' => array('/accidente/ingresarForestal'),'visible' => Usuario::checkAccess('proyecto')),
 							)
 						)
 					)
@@ -138,16 +138,17 @@
 					'activateParents' => true,
 					'items' => array(
 						array(
+							'visible' => Usuario::checkAccess('informes'),
 							'label' => 'Informes',
 							'url' => array('/Usuario/index'),
 							'icon'=> BsHtml::GLYPHICON_LIST_ALT,
 							'items' => array(
-								array('label' => 'Seguridad por empresa','url' => array('/estadistica/seg_emp/'),'visible' => TRUE),
-								array('label' => 'Seguridad de empresas por area','url' => array('/estadistica/seg_emp_are/'),'visible' => TRUE),
-								array('label' => 'Seguridad planta con areas','url' => array('/estadistica/seg_plan_are/'),'visible' => TRUE),
-								array('label' => 'Seguridad de empresas con otras empresas','url' => array('/estadistica/seg_emp_emp/'),'visible' => TRUE),
-								array('label' => 'Accidentes mensuales por empresas','url' => array('/estadistica/acc_men_emp/'),'visible' => TRUE),
-								array('label' => 'Accidentes Anuales Area Bosque','url' => array('/estadistica/acc_anu_are_bosque/'),'visible' => TRUE),
+								array('label' => 'Seguridad por empresa','url' => array('/estadistica/seg_emp/'),'visible' => Usuario::checkAccess('estadistica')),
+								array('label' => 'Seguridad de empresas por area','url' => array('/estadistica/seg_emp_are/'),'visible' => Usuario::checkAccess('estadistica')),
+								array('label' => 'Seguridad planta con areas','url' => array('/estadistica/seg_plan_are/'),'visible' => Usuario::checkAccess('estadistica')),
+								array('label' => 'Seguridad de empresas con otras empresas','url' => array('/estadistica/seg_emp_emp/'),'visible' => Usuario::checkAccess('estadistica')),
+								array('label' => 'Accidentes mensuales por empresas','url' => array('/estadistica/acc_men_emp/'),'visible' => Usuario::checkAccess('estadistica')),
+								array('label' => 'Accidentes Anuales Area Bosque','url' => array('/estadistica/acc_anu_are_bosque/'),'visible' => Usuario::checkAccess('estadistica')),
 							)
 						)
 					)
