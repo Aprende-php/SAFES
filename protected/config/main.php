@@ -68,7 +68,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=safes',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '164352',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 		

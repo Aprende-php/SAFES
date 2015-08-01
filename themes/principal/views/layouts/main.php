@@ -152,6 +152,19 @@
 						)
 					)
 				),
+				array(
+					'class' => 'bootstrap.widgets.BsNav',
+					'type' => 'navbar',
+					'activateParents' => true,
+					'items' => array(
+						array(
+							'label' => 'Plan Estrategico',
+							'url' => array('/PlanEstrategico/create'),
+						)
+					)
+				),
+
+
 				// Usuarios Login
 				array(
 					'class' => 'bootstrap.widgets.BsNav',
@@ -178,6 +191,7 @@
 						'pull'=> BsHtml::NAVBAR_NAV_PULL_RIGHT
 					),
 				),
+				
 			)
 		// fin de items
 		)

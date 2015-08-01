@@ -64,10 +64,10 @@ class PlanEstrategico extends CActiveRecord
 		return array(
 			'P_EST_CORREL' => 'P Est Correl',
 			'EMP_CORREL' => 'Emp Correl',
-			'P_EST_NOMBRE' => 'P Est Nombre',
-			'P_EST_DESCRIPCION' => 'P Est Descripcion',
-			'P_EST_FINICIO' => 'P Est Finicio',
-			'P_EST_FTERMINO' => 'P Est Ftermino',
+			'P_EST_NOMBRE' => 'Nombre',
+			'P_EST_DESCRIPCION' => 'Descripcion',
+			'P_EST_FINICIO' => 'Fecha inicio',
+			'P_EST_FTERMINO' => 'Fecha termino',
 		);
 	}
 
