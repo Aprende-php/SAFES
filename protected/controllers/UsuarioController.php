@@ -16,7 +16,7 @@ class UsuarioController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('action','admin','controller','create','delete','login','logout','modulos','permisos','role'),
+				'actions'=>array('index','action','admin','controller','create','delete','login','logout','modulos','permisos','role'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -35,6 +35,12 @@ class UsuarioController extends Controller
 				'users'=>array('*'),
 			),
 		);
+	}
+
+	public function actionIndex()
+	{
+		$this->redirect(array('site/index'));
+
 	}
 
 	public function actionAction()
@@ -79,8 +85,9 @@ class UsuarioController extends Controller
 	}
 
 	public function actionLogout()
-	{
-		$this->render('logout');
+	{		
+		Yii::app()->user->logout();
+		$this->redirect(Yii::app()->homeUrl);
 	}
 
 	public function actionModulos()

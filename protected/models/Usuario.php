@@ -20,6 +20,7 @@ class Usuario extends CActiveRecord
 	/**
 	 * @return string the associated database table name
 	 */
+	public $isAdmin=true;
 	public function tableName()
 	{
 		return 'usuario';
@@ -46,14 +47,22 @@ class Usuario extends CActiveRecord
 	public function checkAccess($controller=null,$action=null)
 	{
 		$user=Yii::app()->user->getId();
-		if($user=='18.108.559-2')return true;
-		else $user=2;
+		if (is_null($user)) return false;
 		if ($controller!==null&$action===null)
 			return Permisos::model()->exists("CON_NOMBRE='$controller' AND PER_CORREL=$user AND TIPO ='ALLOW'");
-		if ($controller===null&$action===null){$controller=$this->id;$action=$this->action->id;}
+		if ($controller===null&$action===null){$controller=Yii::app()->controller->id;$action=Yii::app()->controller->action->id;}
 			return Permisos::model()->exists("CON_NOMBRE='$controller' AND ACT_NOMBRE='$action' AND PER_CORREL=$user AND TIPO ='ALLOW'");
 	}
 
+	public function checkLogin()
+	{
+		return Yii::app()->db->createCommand()
+		    ->select('CONCAT(PER_NOMBRE," ",PER_PATERNO," ",PER_MATERNO) AS NOMBRES,u.USU_PASSWORD,p.PER_CORREL')
+		    ->from('PERSONA p')
+		    ->join('USUARIO u', 'p.PER_CORREL=U.PER_CORREL')
+		    ->where(array('AND','u.USU_ESTADO="ACTIVO"',"p.PER_RUT='$this->username'"))
+		    ->queryRow();
+	}
 	/**
 	 * @return array relational rules.
 	 */

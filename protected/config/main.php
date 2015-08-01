@@ -11,6 +11,8 @@ return array(
    	'theme'=>'principal',
     'language'=>'es',
 	'sourceLanguage' => 'es',
+	
+	'defaultController' => 'Usuario/index',
 	// preloading 'log' component
 	'preload'=>array('log'),
 
@@ -57,6 +59,7 @@ return array(
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(
+				'index'=>'xapala',
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',

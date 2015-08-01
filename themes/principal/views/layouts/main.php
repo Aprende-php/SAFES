@@ -82,7 +82,7 @@
 						array(
 							'visible' => Usuario::checkAccess('empresa'),
 							'label' => 'Empresa',
-							'url' => array('/Usuario/index'),
+							'url' => array('/Empresa/index'),
 							'icon'=> BsHtml::GLYPHICON_COG,
 							'items' => array(
 								BsHtml::dropDownHeader('Administración de Empresas'),
@@ -157,20 +157,20 @@
 				array(
 					'class' => 'bootstrap.widgets.BsNav',
 					'type' => 'navbar',
-					'activateParents' => true,
+					// 'activateParents' => false,
 					'items' => array(
 						array(
 							'label' => 'Bienvenido Ruben',
-							'url' => array(
-								'/site/index'
-							),
+							// 'url' => array(
+							// 	'/site/index'
+							// ),
 							'icon'=>BsHtml::GLYPHICON_USER,
 							'visible' => !Yii::app()->user->isGuest,
 							'items' => array(
 
 								array('icon'=>BsHtml::GLYPHICON_USER,'label' => 'Cambiar Contraseña','url' => array('/usuario/changepassword')),
 								BsHtml::menuDivider(),
-								array('icon'=>BsHtml::GLYPHICON_LOG_OUT,'label' => 'Cerrar Sesión','url' => array('/site/logout'))
+								array('icon'=>BsHtml::GLYPHICON_LOG_OUT,'label' => 'Cerrar Sesión','url' => array('/usuario/logout'))
 						
 							),
 						),
